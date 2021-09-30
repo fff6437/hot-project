@@ -22,9 +22,7 @@ module.exports = function (env, argv) {
     devServer: {
       static: {
         directory: path.join(__dirname, 'public'),
-        // directory: path.join(__dirname, './dist'),
       },
-      // contentBase: './dist',
       host: 'localhost',
       port: 8080,
       open: true,
