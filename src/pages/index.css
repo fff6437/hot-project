@@ -1,3 +1,15 @@
+.item-top{
+  height: 25px;
+  padding: 0 50px;
+}
+.checkedTag{
+  color: red;
+}
+.item-top a{
+  margin: 0 30px;
+}
+
+
 .header {
   width: 100%;
   text-align: center;
@@ -12,6 +24,11 @@
 }
 .list {
   padding: 0 200px;
+  /* display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around; */
+}
+.list>div {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -60,7 +77,7 @@
   overflow: hidden;
   position: fixed;
   right: 0;
-  top: 35px;
+  top: 60px;
   z-index: 99999;
 }
 .loader-inner {
@@ -170,4 +187,14 @@
   top: 5px;
   right: 10px;
   cursor: pointer;
+}
+
+
+@media (max-width: 800px){
+  .list>div {
+    padding:0 20px;
+  }
+  .header span{
+    padding: 0 10px;
+  }
 }
