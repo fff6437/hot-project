@@ -1,0 +1,205 @@
+/*!*****************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js!./src/pages/battle/battle.css ***!
+  \*****************************************************************************************************************************************************/
+.qcEIFLHGRL2QU2zYjunJ{
+
+}
+.WpiBuMTvpeACGE48YF6Z {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+}
+.U11LM8NyWNxtly6JH7zU {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.U11LM8NyWNxtly6JH7zU>div{
+    text-align: center;
+    margin: 20px;
+    width: 200px;
+}
+.U11LM8NyWNxtly6JH7zU .nZKmjEspN6k54fk10lkh {
+    font-size: 20px;
+    text-align: center;
+    margin: 8px 0px 16px;
+    white-space: nowrap;
+}
+.U11LM8NyWNxtly6JH7zU  .a7RTzlOH6xI_s_ZUa1_V i{
+    font-size: 120px;
+    padding: 30px;
+    background-color: #eee;
+}
+h3{
+    text-align: center;
+}
+/* .battle-form{
+    display: flex;
+    padding: 20px 50px;
+} */
+.cHZkdH76I04eLZ7EEvkl {
+    display: flex;
+    padding: 20px 50px;
+}
+.cHZkdH76I04eLZ7EEvkl>div{
+    width: 50%;
+    margin-left: 10px;
+}
+.cHZkdH76I04eLZ7EEvkl input {
+    width: 60%;
+    height: 40px;
+}
+.cHZkdH76I04eLZ7EEvkl button{
+    width: 33%;
+    height: 46px;
+    margin-left: 3%;
+}
+.cHZkdH76I04eLZ7EEvkl .z8_iS0I9mAt_SiW37Thx {
+    display: flex;
+    align-items: center;
+}
+#_fXfP7cIGmwD64g1UIyb{
+    display: inline-block;
+    margin-left: 10px;
+
+}
+.cHZkdH76I04eLZ7EEvkl h3{
+    text-align: left;
+}
+.nMPWj5cPZsCGPFoT4ptm{
+    display: flex;
+    flex-direction: row;
+    padding: 16px;
+    border-radius: 4px;
+    background-color: #dfdfdf;
+    align-items: center;
+}
+.nMPWj5cPZsCGPFoT4ptm img{
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+}
+.nMPWj5cPZsCGPFoT4ptm .Ieee5M0sO9ELVTlCFLsA{
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+.nMPWj5cPZsCGPFoT4ptm i{
+    font-size: 36px;
+    cursor: pointer;
+}
+.nMPWj5cPZsCGPFoT4ptm .Ieee5M0sO9ELVTlCFLsA span{
+    font-size: 32px;
+    color: #1890ff
+}
+.auuPWhyLfNhuW2QNDQKR{
+    text-align: center;
+}
+.auuPWhyLfNhuW2QNDQKR button{
+    font-size: 20px;
+    padding: 20px 30px;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.X7P91Tl88aTubyjBoIVN{
+    text-align: center;
+}
+.OyWDe4wgU5YQIGMiN1zf{
+    font-size: 22px;
+}
+.XOVsX5fMro6OLUexa9bS{
+    color: yellow;
+}
+.D3Qa2lxGHQj8UXWoqk88{
+    color: gray;
+}
+._JSgWMxFAQEqXlQQKc0Z{
+    color:rgb(255, 191, 116);
+}
+.O5xc36kYuQSzXCDzDJIQ{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.O5xc36kYuQSzXCDzDJIQ>div{
+    display: flex;
+    flex-direction: column;
+    border-radius: 4px;
+    padding: 32px;
+    background-color: rgb(221, 221, 221);
+    margin: 16px 128px;
+}
+.O5xc36kYuQSzXCDzDJIQ>div img{
+    width: 200px;
+    height: 200px;
+    margin:0 0 15px;
+}
+.O5xc36kYuQSzXCDzDJIQ>div i{
+    margin-right: 5px;
+}
+
+.oSB6boLKYo4uBUMbcYmE{
+    text-align: center;
+    font-size: 28px;
+    margin: 10px auto;
+}
+.Oqbb0HAXvfuzxxHrS_mP{
+    color: #1890ff;
+    font-size: 24px;
+    margin: 20px 0; 
+}
+._4n7aAkrIfVCCpLFWQmp{
+    text-align: center;
+    margin-top: 20px;
+}
+._4n7aAkrIfVCCpLFWQmp button{
+    font-size: 20px;
+    padding: 20px 30px;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+@media (max-width: 900px){
+    form {
+        width: 100%;
+    }
+    .U11LM8NyWNxtly6JH7zU{
+        display: block;
+    }
+    .U11LM8NyWNxtly6JH7zU>div{
+        margin: auto;
+    }
+    .cHZkdH76I04eLZ7EEvkl{
+        flex-wrap: wrap;
+        padding: 20px 10px;
+    }
+    .cHZkdH76I04eLZ7EEvkl>div{
+        width: 100%;
+    }
+
+    .O5xc36kYuQSzXCDzDJIQ>div{
+        margin: 16px auto;
+    }
+    /* .result-center{
+        display: block;
+    }
+    .result-center>div{
+        margin: 16px auto;
+    }
+    .result-center img{
+        width: 100% !important;
+        height: 100% !important;
+    } */
+}
+@media (max-width: 600px){
+    .O5xc36kYuQSzXCDzDJIQ{
+        display: block;
+    }
+    .O5xc36kYuQSzXCDzDJIQ img{
+        width: 100% !important;
+        height: 100% !important;
+    }
+}
+
+/*# sourceMappingURL=battle.98ebf717.chunk.css.map*/
