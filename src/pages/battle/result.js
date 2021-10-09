@@ -4,21 +4,36 @@ import Loading from "src/pages/loading";
 import style from "./battle.css";
 // import load from '../index.css';
 
-export default (props) => {
+export default () => {
   const [oneInfos, setOneInfos] = useState({});
   const [loadingOne, setOneloading] = useState(false);
   const [loadingTwo, setTwoloading] = useState(false);
   const [twoInfos, setTwoInfos] = useState({});
 
+  // 把URL的参数解析为对象
+  const parseUri = (uri) => {
+    const para = uri.split("?")[1];
+    const arrPara = para.split("&");
+    const n = arrPara.length;
+    const params = {};
+    for (let i = 0; i < n; i += 1) {
+      const arr = arrPara[i].split("=");
+      const [a, b] = arr;
+      params[a] = b;
+    }
+    return params;
+  };
+
   useEffect(async () => {
+    const params = parseUri(window.location.hash);
     axios
-      .get(`https://api.github.com/users/${props.player.playerOne}`)
+      .get(`https://api.github.com/users/${params.playerOne}`)
       .then((res) => {
         setOneInfos(res.data);
         setOneloading(true);
       });
     axios
-      .get(`https://api.github.com/users/${props.player.playerTwo}`)
+      .get(`https://api.github.com/users/${params.playerTwo}`)
       .then((res) => {
         setTwoInfos(res.data);
         setTwoloading(true);
@@ -26,14 +41,13 @@ export default (props) => {
   }, []);
   const reset = () => {
     window.location.href = "#/battle";
-    props.reset();
   };
 
   return loadingOne && loadingTwo ? (
-    <div className={`${style['result-result']}`}>
-      <div className={`${style['result-center']}`}>
+    <div className={`${style["result-result"]}`}>
+      <div className={`${style["result-center"]}`}>
         <div>
-          <div className={`${style['result-info']}`}>
+          <div className={`${style["result-info"]}`}>
             {oneInfos.public_repos > twoInfos.public_repos ? "Winner" : "Loser"}
           </div>
           <div>
@@ -42,7 +56,9 @@ export default (props) => {
           <div className={`${style.center} ${style.score}`}>
             Scores: {oneInfos.public_repos}
           </div>
-          <div className={`${style.center} ${style['result-name']}`}>{oneInfos.name}</div>
+          <div className={`${style.center} ${style["result-name"]}`}>
+            {oneInfos.name}
+          </div>
           <div>
             <i className="fa fa-location-arrow" />
             {oneInfos.location}
@@ -56,23 +72,23 @@ export default (props) => {
             {oneInfos.following}
           </div>
           <div>
-            <i className="fa fa-code"/>
+            <i className="fa fa-code" />
             {oneInfos.public_repos}
           </div>
         </div>
         <div>
-          <div className={`${style['result-info']}`}>
+          <div className={`${style["result-info"]}`}>
             {twoInfos.public_repos > oneInfos.public_repos ? "Winner" : "Loser"}
           </div>
           <div>
             <img src={twoInfos.avatar_url} alt="" />
           </div>
-          <div className={style.center}>
-            Scores: {twoInfos.public_repos}
+          <div className={style.center}>Scores: {twoInfos.public_repos}</div>
+          <div className={`${style.center} ${style["result-name"]}`}>
+            {twoInfos.name}
           </div>
-          <div className={`${style.center} ${style['result-name']}`}>{twoInfos.name}</div>
           <div>
-            <i className="fa fa-location-arrow"/>
+            <i className="fa fa-location-arrow" />
             {twoInfos.location}
           </div>
           <div>
@@ -80,7 +96,7 @@ export default (props) => {
             {twoInfos.followers}
           </div>
           <div>
-            <i className="fa fa-user-plus"/>
+            <i className="fa fa-user-plus" />
             {twoInfos.following}
           </div>
           <div>
@@ -89,7 +105,7 @@ export default (props) => {
           </div>
         </div>
       </div>
-      <div className={style['result-btn']}>
+      <div className={style["result-btn"]}>
         <button
           type="button"
           onClick={() => {

@@ -3,7 +3,7 @@ import { Formik } from "formik";
 // import { useFormik } from 'formik';
 import style from "./battle.css";
 
-export default (props) => {
+export default () => {
   // const [checkedName, setCheckedName] = useState("All");
   const [playerOne, setPlayerOne] = useState("");
   const [playerTwo, setPlayerTwo] = useState("");
@@ -21,8 +21,8 @@ export default (props) => {
   };
 
   const battle = () => {
-    window.location.href = `#/result?playerOne=${playerOne}&playerTwo=${playerTwo}`;
-    props.battle();
+    window.location.href = `#/battle/result?playerOne=${playerOne}&playerTwo=${playerTwo}`;
+    // props.battle();
   };
 
   const clearPlayer = (name) => {
@@ -35,36 +35,32 @@ export default (props) => {
     }
   };
   return (
-    <div className={`${style['battle-select']}`}>
-      <div className={`${style['battle-title']}`}>Instructions</div>
-      <div className={`${style['battle-center']}`}>
+    <div className={`${style["battle-select"]}`}>
+      <div className={`${style["battle-title"]}`}>Instructions</div>
+      <div className={`${style["battle-center"]}`}>
         <div>
-          <div className={`${style['battle-info']}`}>Enter two Github Users</div>
-          <div className={`${style['battle-column']}`}>
-            <i
-              className={`fa fa-users ${style.org}`}
-            />
+          <div className={`${style["battle-info"]}`}>
+            Enter two Github Users
+          </div>
+          <div className={`${style["battle-column"]}`}>
+            <i className={`fa fa-users ${style.org}`} />
           </div>
         </div>
         <div>
-          <div className={`${style['battle-info']}`}>Battle</div>
-          <div className={`${style['battle-column']}`}>
-            <i
-              className={`fa fa-fighter-jet ${style.gray}`}
-            />
+          <div className={`${style["battle-info"]}`}>Battle</div>
+          <div className={`${style["battle-column"]}`}>
+            <i className={`fa fa-fighter-jet ${style.gray}`} />
           </div>
         </div>
         <div>
-          <div className={`${style['battle-info']}`}>See the winner</div>
-          <div className={`${style['battle-column']}`}>
-            <i
-              className={`fa fa-trophy ${style.yellow}`}
-            />
+          <div className={`${style["battle-info"]}`}>See the winner</div>
+          <div className={`${style["battle-column"]}`}>
+            <i className={`fa fa-trophy ${style.yellow}`} />
           </div>
         </div>
       </div>
       <h3>Players</h3>
-      <div className={`${style['battle-form-content-wrap']}`}>
+      <div className={`${style["battle-form-content-wrap"]}`}>
         <div>
           <h3> Player One </h3>
           {!oneImg ? (
@@ -85,7 +81,7 @@ export default (props) => {
               {(formProps) => (
                 <form
                   onSubmit={formProps.handleSubmit}
-                  className={`${style['battle-form-content']}`}
+                  className={`${style["battle-form-content"]}`}
                 >
                   <input
                     type="text"
@@ -102,8 +98,8 @@ export default (props) => {
               )}
             </Formik>
           ) : (
-            <div className={`${style['battle-selectInfo']}`}>
-              <div className={`${style['battle-basicInfo']}`}>
+            <div className={`${style["battle-selectInfo"]}`}>
+              <div className={`${style["battle-basicInfo"]}`}>
                 <img src={oneImg} alt="" />
                 <span>{playerOne}</span>
               </div>
@@ -116,8 +112,8 @@ export default (props) => {
                 <i
                   className="fa fa-times-circle"
                   style={{
-                      color: "red",
-                    }}
+                    color: "red",
+                  }}
                 />
               </div>
             </div>
@@ -143,7 +139,7 @@ export default (props) => {
               {(formProps) => (
                 <form
                   onSubmit={formProps.handleSubmit}
-                  className={`${style['battle-form-content']}`}
+                  className={`${style["battle-form-content"]}`}
                 >
                   <input
                     type="text"
@@ -160,8 +156,8 @@ export default (props) => {
               )}
             </Formik>
           ) : (
-            <div className={`${style['battle-selectInfo']}`}>
-              <div className={`${style['battle-basicInfo']}`}>
+            <div className={`${style["battle-selectInfo"]}`}>
+              <div className={`${style["battle-basicInfo"]}`}>
                 <img src={twoImg} alt="" />
                 <span>{playerTwo}</span>
               </div>
@@ -183,7 +179,7 @@ export default (props) => {
         </div>
       </div>
       {oneImg && twoImg && (
-        <div className={`${style['battle-button']}`}>
+        <div className={`${style["battle-button"]}`}>
           <button
             type="button"
             onClick={() => {
