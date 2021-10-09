@@ -178,7 +178,7 @@ export default () => {
           )}
         </div>
       </div>
-      {oneImg && twoImg && (
+      {oneImg && twoImg && (twoImg !== oneImg)  && (
         <div className={`${style["battle-button"]}`}>
           <button
             type="button"

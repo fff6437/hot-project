@@ -134,7 +134,7 @@ export default (props) => {
                 <div className={`${style.img} ${style.center}`}>
                   <img src={v.owner.avatar_url} alt="" />
                 </div>
-                <div className={`${style['list-name']} ${style.center}`}>{v.owner.login}</div>
+                <div className={`${style['list-name']} ${style.center}`}>{v.name}</div>
                 <div className={style['list-info']}>
                   <i
                     className={`fa fa-user ${style.green}`}
