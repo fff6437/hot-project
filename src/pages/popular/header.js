@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import style from './index.css';
 
 const searchKeys = [
   { name: "All", key: "stars:%3E1" },
@@ -7,6 +8,8 @@ const searchKeys = [
   { name: "Java", key: "stars:%3E1+language:java" },
   { name: "CSS", key: "stars:%3E1+language:css" },
 ];
+
+
 export default (props) => {
   const [checkedName, setCheckedName] = useState("All");
   const getKeysInfo = (v) => {
@@ -15,18 +18,19 @@ export default (props) => {
     props.getStarList(v.key);
   };
   return (
-    <div className="header">
+    <div className={`${style.header} ${style.center}`}>
       {searchKeys.map((v, i) => (
-        <span
+        <a
           role="button"
+          href='#'
           tabIndex={0}
           onKeyUp={() => {}}
           key={i}
-          className={`${checkedName === v.name ? "checked" : ""} item`}
+          className={`${checkedName === v.name ? `${style.checked}` : ""}`}
           onClick={() => getKeysInfo(v)}
         >
           {v.name}
-        </span>
+        </a>
       ))}
     </div>
   );

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./battle.css";
+import Loading from "src/pages/loading";
+import style from "./battle.css";
+// import load from '../index.css';
 
 export default (props) => {
   const [oneInfos, setOneInfos] = useState({});
@@ -28,19 +30,19 @@ export default (props) => {
   };
 
   return loadingOne && loadingTwo ? (
-    <div className="result-result">
-      <div className="result-center">
+    <div className={`${style['result-result']}`}>
+      <div className={`${style['result-center']}`}>
         <div>
-          <div className="result-info">
+          <div className={`${style['result-info']}`}>
             {oneInfos.public_repos > twoInfos.public_repos ? "Winner" : "Loser"}
           </div>
           <div>
             <img src={oneInfos.avatar_url} alt="" />
           </div>
-          <div className="center" style={{ fontSize: "22px" }}>
+          <div className={`${style.center} ${style.score}`}>
             Scores: {oneInfos.public_repos}
           </div>
-          <div className="center result-name">{oneInfos.name}</div>
+          <div className={`${style.center} ${style['result-name']}`}>{oneInfos.name}</div>
           <div>
             <i className="fa fa-location-arrow" />
             {oneInfos.location}
@@ -54,23 +56,23 @@ export default (props) => {
             {oneInfos.following}
           </div>
           <div>
-            <i className="fa fa-code" />
+            <i className="fa fa-code"/>
             {oneInfos.public_repos}
           </div>
         </div>
         <div>
-          <div className="result-info">
+          <div className={`${style['result-info']}`}>
             {twoInfos.public_repos > oneInfos.public_repos ? "Winner" : "Loser"}
           </div>
           <div>
             <img src={twoInfos.avatar_url} alt="" />
           </div>
-          <div className="center" style={{ fontSize: "22px" }}>
+          <div className={style.center}>
             Scores: {twoInfos.public_repos}
           </div>
-          <div className="center result-name">{twoInfos.name}</div>
+          <div className={`${style.center} ${style['result-name']}`}>{twoInfos.name}</div>
           <div>
-            <i className="fa fa-location-arrow" />
+            <i className="fa fa-location-arrow"/>
             {twoInfos.location}
           </div>
           <div>
@@ -78,7 +80,7 @@ export default (props) => {
             {twoInfos.followers}
           </div>
           <div>
-            <i className="fa fa-user-plus" />
+            <i className="fa fa-user-plus"/>
             {twoInfos.following}
           </div>
           <div>
@@ -87,7 +89,7 @@ export default (props) => {
           </div>
         </div>
       </div>
-      <div className="result-btn">
+      <div className={style['result-btn']}>
         <button
           type="button"
           onClick={() => {
@@ -99,24 +101,25 @@ export default (props) => {
       </div>
     </div>
   ) : (
-    <div className="loader">
-      <div className="loader-inner">
-        <div className="loader-line-wrap">
-          <div className="loader-line" />
-        </div>
-        <div className="loader-line-wrap">
-          <div className="loader-line" />
-        </div>
-        <div className="loader-line-wrap">
-          <div className="loader-line" />
-        </div>
-        <div className="loader-line-wrap">
-          <div className="loader-line" />
-        </div>
-        <div className="loader-line-wrap">
-          <div className="loader-line" />
-        </div>
-      </div>
-    </div>
+    // <div className={load.loader}>
+    //     <div className={load['loader-inner']}>
+    //       <div className={load['loader-line-wrap']}>
+    //         <div className={load['loader-line']} />
+    //       </div>
+    //       <div className={load['loader-line-wrap']}>
+    //         <div className={load['loader-line']} />
+    //       </div>
+    //       <div className={load['loader-line-wrap']}>
+    //         <div className={load['loader-line']} />
+    //       </div>
+    //       <div className={load['loader-line-wrap']}>
+    //         <div className={load['loader-line']} />
+    //       </div>
+    //       <div className={load['loader-line-wrap']}>
+    //         <div className={load['loader-line']} />
+    //       </div>
+    //     </div>
+    //   </div>
+    <Loading />
   );
 };

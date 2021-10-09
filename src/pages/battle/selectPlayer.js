@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Formik } from "formik";
 // import { useFormik } from 'formik';
-import "./battle.css";
+import style from "./battle.css";
 
 export default (props) => {
   // const [checkedName, setCheckedName] = useState("All");
@@ -34,47 +34,37 @@ export default (props) => {
       setTwoImg("");
     }
   };
-
   return (
-    <div className="battle-select">
-      <div className="battle-title">Instructions</div>
-      <div className="battle-center">
+    <div className={`${style['battle-select']}`}>
+      <div className={`${style['battle-title']}`}>Instructions</div>
+      <div className={`${style['battle-center']}`}>
         <div>
-          <div className="battle-info">Enter two Github Users</div>
-          <div className="battle-column">
+          <div className={`${style['battle-info']}`}>Enter two Github Users</div>
+          <div className={`${style['battle-column']}`}>
             <i
-              className="fa fa-users"
-              style={{
-                color: "rgb(255, 191, 116)",
-              }}
+              className={`fa fa-users ${style.org}`}
             />
           </div>
         </div>
         <div>
-          <div className="battle-info">Battle</div>
-          <div className="battle-column">
+          <div className={`${style['battle-info']}`}>Battle</div>
+          <div className={`${style['battle-column']}`}>
             <i
-              className="fa fa-fighter-jet"
-              style={{
-                color: "gray",
-              }}
+              className={`fa fa-fighter-jet ${style.gray}`}
             />
           </div>
         </div>
         <div>
-          <div className="battle-info">See the winner</div>
-          <div className="battle-column">
+          <div className={`${style['battle-info']}`}>See the winner</div>
+          <div className={`${style['battle-column']}`}>
             <i
-              className="fa fa-trophy"
-              style={{
-                color: "yellow",
-              }}
+              className={`fa fa-trophy ${style.yellow}`}
             />
           </div>
         </div>
       </div>
       <h3>Players</h3>
-      <div className="battle-form-content-wrap">
+      <div className={`${style['battle-form-content-wrap']}`}>
         <div>
           <h3> Player One </h3>
           {!oneImg ? (
@@ -83,12 +73,11 @@ export default (props) => {
               validate={(values) => {
                 const errors = {};
                 if (!values.playerOne) {
-                  errors.playerOne = "Required";
+                  errors.playerOne = "请输入";
                 }
                 return errors;
               }}
               onSubmit={(values, actions) => {
-                console.log(values);
                 actions.setSubmitting(false);
                 setPlay(values.playerOne, "one");
               }}
@@ -96,7 +85,7 @@ export default (props) => {
               {(formProps) => (
                 <form
                   onSubmit={formProps.handleSubmit}
-                  className="battle-form-content"
+                  className={`${style['battle-form-content']}`}
                 >
                   <input
                     type="text"
@@ -106,15 +95,15 @@ export default (props) => {
                     placeholder="github username"
                   />
                   {formProps.errors.playerOne && (
-                    <div id="feedback">{formProps.errors.playerOne}</div>
+                    <div id={style.feedback}>{formProps.errors.playerOne}</div>
                   )}
                   <button type="submit">Submit</button>
                 </form>
               )}
             </Formik>
           ) : (
-            <div className="battle-selectInfo">
-              <div className="battle-basicInfo">
+            <div className={`${style['battle-selectInfo']}`}>
+              <div className={`${style['battle-basicInfo']}`}>
                 <img src={oneImg} alt="" />
                 <span>{playerOne}</span>
               </div>
@@ -127,8 +116,8 @@ export default (props) => {
                 <i
                   className="fa fa-times-circle"
                   style={{
-                    color: "red",
-                  }}
+                      color: "red",
+                    }}
                 />
               </div>
             </div>
@@ -142,7 +131,7 @@ export default (props) => {
               validate={(values) => {
                 const errors = {};
                 if (!values.playerTwo) {
-                  errors.playerTwo = "Required";
+                  errors.playerTwo = "请输入";
                 }
                 return errors;
               }}
@@ -154,7 +143,7 @@ export default (props) => {
               {(formProps) => (
                 <form
                   onSubmit={formProps.handleSubmit}
-                  className="battle-form-content"
+                  className={`${style['battle-form-content']}`}
                 >
                   <input
                     type="text"
@@ -164,15 +153,15 @@ export default (props) => {
                     placeholder="github username"
                   />
                   {formProps.errors.playerTwo && (
-                    <div id="feedback">{formProps.errors.playerTwo}</div>
+                    <div id={style.feedback}>{formProps.errors.playerTwo}</div>
                   )}
                   <button type="submit">Submit</button>
                 </form>
               )}
             </Formik>
           ) : (
-            <div className="battle-selectInfo">
-              <div className="battle-basicInfo">
+            <div className={`${style['battle-selectInfo']}`}>
+              <div className={`${style['battle-basicInfo']}`}>
                 <img src={twoImg} alt="" />
                 <span>{playerTwo}</span>
               </div>
@@ -194,7 +183,7 @@ export default (props) => {
         </div>
       </div>
       {oneImg && twoImg && (
-        <div className="battle-button">
+        <div className={`${style['battle-button']}`}>
           <button
             type="button"
             onClick={() => {

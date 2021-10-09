@@ -49,16 +49,18 @@ h3{
 .battle-form-content-wrap button{
     width: 33%;
     height: 46px;
-    margin-left: 3%;
+    /* margin-left: 3%; */
 }
 .battle-form-content-wrap .battle-form-content {
     display: flex;
     align-items: center;
+    justify-content: space-around;
 }
 #feedback{
     display: inline-block;
     margin-left: 10px;
-
+    color: red;
+    width: 52px;
 }
 .battle-form-content-wrap h3{
     text-align: left;
@@ -105,7 +107,18 @@ h3{
 .center{
     text-align: center;
 }
-
+.score{
+    font-size: 22px;
+}
+.yellow{
+    color: yellow;
+}
+.gray{
+    color: gray;
+}
+.org{
+    color:rgb(255, 191, 116);
+}
 .result-center{
     display: flex;
     flex-direction: row;

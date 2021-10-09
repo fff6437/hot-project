@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Loading from "src/pages/loading";
 import InfiniteScroll from "react-infinite-scroller";
+import style from './index.css';
+// import load from '../index.css';
+
 
 export default (props) => {
   const [page, setPage] = useState(0);
@@ -91,27 +95,28 @@ export default (props) => {
     getStarList(props.urlKey, 0, false);
   }, [props.urlKey]);
   return (
-    <div className="list">
+    <div className={style.list}>
       {loading && (
-        <div className="loader">
-          <div className="loader-inner">
-            <div className="loader-line-wrap">
-              <div className="loader-line" />
-            </div>
-            <div className="loader-line-wrap">
-              <div className="loader-line" />
-            </div>
-            <div className="loader-line-wrap">
-              <div className="loader-line" />
-            </div>
-            <div className="loader-line-wrap">
-              <div className="loader-line" />
-            </div>
-            <div className="loader-line-wrap">
-              <div className="loader-line" />
-            </div>
-          </div>
-        </div>
+        // <div className={load.loader}>
+        //   <div className={load['loader-inner']}>
+        //     <div className={load['loader-line-wrap']}>
+        //       <div className={load['loader-line']} />
+        //     </div>
+        //     <div className={load['loader-line-wrap']}>
+        //       <div className={load['loader-line']} />
+        //     </div>
+        //     <div className={load['loader-line-wrap']}>
+        //       <div className={load['loader-line']} />
+        //     </div>
+        //     <div className={load['loader-line-wrap']}>
+        //       <div className={load['loader-line']} />
+        //     </div>
+        //     <div className={load['loader-line-wrap']}>
+        //       <div className={load['loader-line']} />
+        //     </div>
+        //   </div>
+        // </div>
+        <Loading />
       )}
       {!isError ? (
         <InfiniteScroll
@@ -124,53 +129,33 @@ export default (props) => {
           {" "}
           {data &&
             data.map((v, i) => (
-              <div key={i} className="list-content">
-                <div className="ranking">#{i + 1}</div>
-                <div className="img">
+              <div key={i} className={`${style['list-content']}`}>
+                <div className={`${style.ranking} ${style.center}`}>#{i + 1}</div>
+                <div className={`${style.img} ${style.center}`}>
                   <img src={v.owner.avatar_url} alt="" />
                 </div>
-                <div className="list-name">{v.owner.login}</div>
-                <div className="list-info">
+                <div className={`${style['list-name']} ${style.center}`}>{v.owner.login}</div>
+                <div className={style['list-info']}>
                   <i
-                    className="fa fa-user"
-                    style={{
-                      color: "green",
-                      width: "20px",
-                      marginRight: "5px",
-                    }}
+                    className={`fa fa-user ${style.green}`}
                   />
                   {v.owner.login}
                 </div>
-                <div className="list-info">
+                <div className={style['list-info']}>
                   <i
-                    className="fa fa-star"
-                    style={{
-                      color: "yellow",
-                      width: "20px",
-                      marginRight: "5px",
-                    }}
+                    className={`fa fa-star ${style.yellow}`}
                   />
                   {v.stargazers_count} stars
                 </div>
-                <div className="list-info">
+                <div className={style['list-info']}>
                   <i
-                    className="fa fa-code-fork"
-                    style={{
-                      color: "blue",
-                      width: "20px",
-                      marginRight: "5px",
-                    }}
+                    className={`fa fa-code-fork ${style.blue}`}
                   />
                   {v.forks} forks
                 </div>
-                <div className="list-info">
+                <div className={style['list-info']}>
                   <i
-                    className="fa fa-exclamation-triangle"
-                    style={{
-                      color: "pink",
-                      width: "20px",
-                      marginRight: "5px",
-                    }}
+                    className={`fa fa-exclamation-triangle ${style.pink}`}
                   />
                   {v.open_issues} open issues
                 </div>
@@ -179,7 +164,7 @@ export default (props) => {
         </InfiniteScroll>
       ) : (
         isError && (
-          <div className="errorModal">
+          <div className={`${style.errorModal} ${style.center}`}>
             <p>{errorInfo || "加载失败，请稍后再试..."}</p>
             <span
               role="button"

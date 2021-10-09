@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { hot } from "react-hot-loader/root";
-import Header from "./popular/header";
-import Content from "./popular/content";
-import SelectPlayer from "./battle/selectPlayer";
-// import SelectPlayer from '@/pages/battle/selectPlayer';
-import Result from "./battle/result";
-import "node_modules/font-awesome/css/font-awesome.min.css";
-import "./index.css";
+// import Header from "src/pages/popular/header";
+// import Content from "src/pages/popular/content";
+// import SelectPlayer from "src/pages/battle/selectPlayer";
+// import Result from "src/pages/battle/result";
+import Popular from "src/pages/popular";
+import Loading from "src/pages/loading";
+// import Battle from "src/pages/battle";
+import "font-awesome/css/font-awesome.min.css";
+// import "../../node_modules/font-awesome/css/font-awesome.min.css";
+import style from './index.css';
+
+const Battle = React.lazy(() => import('src/pages/battle'));
 
 function App() {
   const [urlKey, setKey] = useState("stars:%3E1");
-  // const [tag, setTag] = useState('battle');
   const [tag, setTag] = useState("popular");
   const [player, setPlayer] = useState({});
   const [isBattle, setBattle] = useState(false);
@@ -50,14 +54,14 @@ function App() {
   }, []);
   return (
     <div>
-      <div className="item-top">
+      <div className={style['item-top']}>
         <a
           role="button"
           href="#"
           tabIndex={0}
           onKeyUp={() => {}}
-          className={`${tag === "popular" ? "checkedTag" : ""}`}
-          onClick={() => setTag("popular")}
+          className={`${tag === "popular" ? `${style.checkedTag}` : ""}`}
+          onClick={() => {setTag("popular");setBattle(false)}}
         >
           popular
         </a>
@@ -66,34 +70,34 @@ function App() {
           href="#/battle"
           tabIndex={0}
           onKeyUp={() => {}}
-          className={`${tag === "battle" ? "checkedTag" : ""}`}
-          onClick={() => setTag("battle")}
+          className={`${tag === "battle" ? `${style.checkedTag}` : ""}`}
+          onClick={() => {setTag("battle");setBattle(false)}}
         >
           battle
         </a>
       </div>
       {tag === "popular" ? (
-        <div>
-          <Header getStarList={(key) => setKey(key)} />
-          <Content urlKey={urlKey} />
-        </div>
+          <Popular urlKey={urlKey} getStarList={(key) => setKey(key)} />
       ) : (
-        <div>
-          {!isBattle ? (
-            <SelectPlayer
-              battle={() => {
-                battle();
-              }}
-            />
-          ) : (
-            <Result
-              player={player}
-              reset={() => {
-                reset();
-              }}
-            />
-          )}
-        </div>
+        // <div>
+        //   {!isBattle ? (
+        //     <SelectPlayer
+        //       battle={() => {
+        //         battle();
+        //       }}
+        //     />
+        //   ) : (
+        //     <Result
+        //       player={player}
+        //       reset={() => {
+        //         reset();
+        //       }}
+        //     />
+        //   )}
+        // </div>
+        <React.Suspense fallback={<Loading />}>
+            <Battle isBattle={isBattle} player={player} reset={() => {reset()}} battle={() => {battle()}} />
+        </React.Suspense>
       )}
     </div>
   );

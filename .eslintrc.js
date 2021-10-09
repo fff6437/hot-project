@@ -15,6 +15,7 @@ module.exports = {
     'react/destructuring-assignment': 0,
     'react/jsx-one-expression-per-line': 0,
     'linebreak-style': ['off', 'windows'], // lf格式
-    'import/no-unresolved': [2, { ignore: ['antd-mobile', 'node_modules'] }], // 导入检查不到的模块
+    'import/no-unresolved': [2, { ignore: ['src', 'node_modules'] }], // 导入检查不到的模块
   },
+
 };
