@@ -1,5 +1,3 @@
-/*! ../index.css */
-
 /*! ./battle.css */
 
 /*! @babel/runtime/helpers/asyncToGenerator */
@@ -17,6 +15,8 @@
 /*! src/pages/battle/result */
 
 /*! src/pages/battle/selectPlayer */
+
+/*! src/pages/loading */
 
 /*!***********************************!*\
   !*** ./src/pages/battle/index.js ***!
