@@ -10,7 +10,9 @@ module.exports = function (env, argv) {
     devtool: isEnvProduction ? 'source-map' : isEnvDevelopment && 'cheap-module-source-map',
     entry: './src/index.js',
     output: {
-      filename: 'bundle.js',
+      // filename: 'bundle.js',
+      filename: '[name].[contenthash:8].js',
+      chunkFilename: '[name].[contenthash:8].bundlesss.js',
       path: path.resolve(__dirname, 'dist'),
     },
     module: {

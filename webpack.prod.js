@@ -21,7 +21,7 @@ module.exports = function (env, argv) {
     },
     output: {
       filename: '[name].[contenthash:8].js',
-      chunkFilename: '[name].bundle.js',
+      chunkFilename: '[name].[contenthash:8].bundle.js',
       path: path.resolve(__dirname, 'dist'),
     },
     module: {
