@@ -11,7 +11,7 @@ export default () => {
     const hash = window.location.hash.slice(2);
     if (hash) {
       if (hash.indexOf("popular") > -1) {
-        const keys = hash.slice(8);
+        const keys = hash.slice(12);
         if (hash === "popular") {
           setKey("stars:%3E1");
           setUrlNmae("All");

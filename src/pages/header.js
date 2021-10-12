@@ -15,7 +15,7 @@ export default () => {
       } else {
         console.log(hash);
         if (hash.indexOf("popular") > -1) {
-          const keys = hash.slice(8);
+          const keys = hash.slice(12);
           console.log(keys);
           if (hash === "popular") {
             setTag("popular");

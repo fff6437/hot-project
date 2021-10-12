@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import style from './index.css';
+import style from "./index.css";
 
 const searchKeys = [
   { name: "All", key: "stars:%3E1" },
@@ -9,12 +9,11 @@ const searchKeys = [
   { name: "CSS", key: "stars:%3E1+language:css" },
 ];
 
-
 export default (props) => {
-  const [checkedName, setCheckedName] = useState('All');
+  const [checkedName, setCheckedName] = useState("All");
   useEffect(() => {
     setCheckedName(props.urlNmae);
-  },[props.urlNmae])
+  }, [props.urlNmae]);
   const getKeysInfo = (v) => {
     if (v.name === checkedName) return;
     setCheckedName(v.name);
@@ -25,11 +24,13 @@ export default (props) => {
       {searchKeys.map((v, i) => (
         <a
           role="button"
-          href={`#/popular/${v.name}`}
+          href={`#/popular?key=${v.name}`}
           tabIndex={0}
           onKeyUp={() => {}}
           key={i}
-          className={`${checkedName === v.name ? `${style.checked}` : `${v.name}`}`}
+          className={`${
+            checkedName === v.name ? `${style.checked}` : `${v.name}`
+          }`}
           onClick={() => getKeysInfo(v)}
         >
           {v.name}
