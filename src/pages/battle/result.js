@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Loading from "src/pages/loading";
+import Loading from "src/compontent/loading";
 import style from "./battle.css";
 // import load from '../index.css';
 
@@ -12,20 +12,58 @@ export default () => {
 
   // 把URL的参数解析为对象
   const parseUri = (uri) => {
-    const para = uri.split("?")[1];
-    const arrPara = para.split("&");
-    const n = arrPara.length;
     const params = {};
-    for (let i = 0; i < n; i += 1) {
-      const arr = arrPara[i].split("=");
-      const [a, b] = arr;
-      params[a] = b;
+    try {
+      const para = uri.split("?")[1];
+      const arrPara = para.split("&");
+      const n = arrPara.length;
+      for (let i = 0; i < n; i += 1) {
+        const arr = arrPara[i].split("=");
+        const [a, b] = arr;
+        params[a] = b;
+      }
+      return params;
+    } catch (error) {
+      window.location.href = "#/battle";
     }
     return params;
   };
+  
+  const getInfo = async () => {
+    const params = parseUri(window.location.hash)
+    if (!params.playerOne || !params.playerTwo) {
+      window.location.href = "#/battle";
+      return;
+    }
+    axios
+      .get(`https://api.github.com/users/${params.playerOne}`)
+      .then((res) => {
+        setOneInfos(res.data);
+        setOneloading(true);
+      });
+    axios
+      .get(`https://api.github.com/users/${params.playerTwo}`)
+      .then((res) => {
+        setTwoInfos(res.data);
+        setTwoloading(true);
+      });
+  }
+
+  useEffect(() => {
+      getInfo();
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("hashchange",getInfo);
+    return window.removeEventListener('hashchange',getInfo);
+  },[]);
 
   useEffect(async () => {
-    const params = parseUri(window.location.hash);
+    const params = parseUri(window.location.hash)
+    if (!params.playerOne || !params.playerTwo) {
+      window.location.href = "#/battle";
+      return;
+    }
     axios
       .get(`https://api.github.com/users/${params.playerOne}`)
       .then((res) => {
@@ -48,7 +86,9 @@ export default () => {
       <div className={`${style["result-center"]}`}>
         <div>
           <div className={`${style["result-info"]}`}>
-            {oneInfos.public_repos > twoInfos.public_repos ? "Winner" : "Loser"}
+            {oneInfos.public_repos > twoInfos.public_repos ? 'Winner' : null}
+            {oneInfos.public_repos === twoInfos.public_repos ? 'Draw' : null}
+            {oneInfos.public_repos < twoInfos.public_repos ? 'Loser' : null}
           </div>
           <div>
             <img src={oneInfos.avatar_url} alt="" />
@@ -78,7 +118,9 @@ export default () => {
         </div>
         <div>
           <div className={`${style["result-info"]}`}>
-            {twoInfos.public_repos > oneInfos.public_repos ? "Winner" : "Loser"}
+            {twoInfos.public_repos > oneInfos.public_repos ? 'Winner' : null}
+            {twoInfos.public_repos === oneInfos.public_repos ? 'Draw' : null}
+            {twoInfos.public_repos < oneInfos.public_repos ? 'Loser' : null}
           </div>
           <div>
             <img src={twoInfos.avatar_url} alt="" />

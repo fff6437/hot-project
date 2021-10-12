@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import style from './index.css';
 
 const searchKeys = [
@@ -11,7 +11,10 @@ const searchKeys = [
 
 
 export default (props) => {
-  const [checkedName, setCheckedName] = useState("All");
+  const [checkedName, setCheckedName] = useState('All');
+  useEffect(() => {
+    setCheckedName(props.urlNmae);
+  },[props.urlNmae])
   const getKeysInfo = (v) => {
     if (v.name === checkedName) return;
     setCheckedName(v.name);
@@ -22,11 +25,11 @@ export default (props) => {
       {searchKeys.map((v, i) => (
         <a
           role="button"
-          href='#'
+          href={`#/popular/${v.name}`}
           tabIndex={0}
           onKeyUp={() => {}}
           key={i}
-          className={`${checkedName === v.name ? `${style.checked}` : ""}`}
+          className={`${checkedName === v.name ? `${style.checked}` : `${v.name}`}`}
           onClick={() => getKeysInfo(v)}
         >
           {v.name}

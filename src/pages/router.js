@@ -5,7 +5,7 @@ import Result from "src/pages/battle/result";
 export const routes = [
   {
     path: "/",
-    exact: true,
+    // exact: true,
     component: Popular,
   },
   // {

@@ -1,4 +1,5 @@
-import React from "react";
+// import React from "react";
+import React,{Suspense,lazy} from 'react'
 // import React, { useState, useEffect } from "react";
 import { HashRouter } from "react-router-dom";
 import { hot } from "react-hot-loader/root";
@@ -15,9 +16,28 @@ import Header from "src/pages/header";
 // import { HashRouter, Route, Redirect } from 'react-router-dom';
 // import { RouteWithSubRoutes } from 'components/routeWithSubRoutes';
 // import { DEFAULT_ROUTE_PATH } from 'constant/project';
-import { routes } from "src/pages/router";
+// import { routes } from "src/pages/router";
 import RouteWithSubRoutes from "src/compontent/routeWithSubRoutes";
-// import style from './index.css';
+
+const Result = lazy(() => import("src/pages/battle/result"))
+const SelectPlayer = lazy(() => import("src/pages/battle/selectPlayer"))
+const Popular = lazy(() => import("src/pages/popular"))
+const routes = [
+  {
+    path: "/",
+    component: Popular,
+  },
+  {
+    path: "/battle",
+    exact: true,
+    component: SelectPlayer,
+  },
+  {
+    path: "/battle/result",
+    component: Result,
+    exact: true,
+  },
+];
 
 function App() {
   // const [tag, setTag] = useState("popular");
@@ -55,6 +75,7 @@ function App() {
         </Route>
       </div> */}
       <Header />
+      <Suspense fallback={<div>Loading...</div>}>
       {routes.map((route) => (
         <RouteWithSubRoutes
           key={route.path}
@@ -64,6 +85,7 @@ function App() {
           path={route.path}
         />
       ))}
+      </Suspense>
     </HashRouter>
   );
 }

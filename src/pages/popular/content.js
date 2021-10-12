@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Loading from "src/pages/loading";
+import Loading from "src/compontent/loading";
 import InfiniteScroll from "react-infinite-scroller";
 import style from './index.css';
 // import load from '../index.css';
@@ -12,6 +12,7 @@ export default (props) => {
   const [getDataLoding, setDataLoding] = useState(false);
   const [loading, setLoading] = useState(false);
   const [isError, setError] = useState(false);
+  const [showBtn, setShowBtn] = useState(false);
   const [errorInfo, setErrorInfo] = useState(null);
   const getStarList = (key, pages, isMore = true) => {
     if (getDataLoding) return;
@@ -44,6 +45,19 @@ export default (props) => {
         setError(true);
       });
   };
+
+  const backTop = () => {
+    document.documentElement.scrollTop = 0
+  }
+  window.onscroll = () => {
+      const scrollTop =
+        document.documentElement.scrollTop || document.body.scrollTop;
+        if (scrollTop === 0) {
+          setShowBtn(false);
+        } else if (scrollTop > 200){
+          setShowBtn(true);
+        }
+  }
 
   // window.onscroll = () => {
   //   // 变量scrollTop是滚动条滚动时，距离顶部的距离
@@ -88,11 +102,14 @@ export default (props) => {
 
   useEffect(() => {
     setData([]);
+    setShowBtn(false);
     setPage(1);
     setDataLoding(false);
     setLoading(false);
     setError(false);
-    getStarList(props.urlKey, 0, false);
+    if(props.urlKey) {
+      getStarList(props.urlKey, 0, false);
+    }
   }, [props.urlKey]);
   return (
     <div className={style.list}>
@@ -179,6 +196,8 @@ export default (props) => {
           </div>
         )
       )}
+      {showBtn && !isError && <button id={`${style.backTop}`} onClick={backTop} type='button'>回到顶部</button>}
+      {!loading && getDataLoding && <div style={{textAlign: 'center',color:'skyblue'}}>LOADING...</div>}
     </div>
   );
 };

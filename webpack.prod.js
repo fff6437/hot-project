@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 // const packageJson = require('./package.json');
 
 module.exports = function (env, argv) {
@@ -121,13 +122,14 @@ module.exports = function (env, argv) {
         chunkFilename: '[name].[contenthash:8].chunk.css',
       }),
       new BundleAnalyzerPlugin(),
+      new CleanWebpackPlugin(),
     ],
     optimization: {
       // moduleIds: 'named',
       minimize: true,
       minimizer: [
-        new TerserPlugin(),
         new OptimizeCSSAssetsPlugin(),
+        new TerserPlugin(),
       ],
       splitChunks: {
         chunks: 'all',

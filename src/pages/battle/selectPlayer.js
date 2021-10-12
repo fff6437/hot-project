@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { Formik } from "formik";
+// import { Formik } from "formik";
+import Formiks from 'src/compontent/formiks';
+import axios from "axios";
 // import { useFormik } from 'formik';
 import style from "./battle.css";
 
@@ -8,15 +10,37 @@ export default () => {
   const [playerOne, setPlayerOne] = useState("");
   const [playerTwo, setPlayerTwo] = useState("");
   const [oneImg, setOneImg] = useState("");
+  const [oneLoading, setOneLoading] = useState(false);
+  const [twoLoading, setTwoLoading] = useState(false);
+  const [oneError, setOneError] = useState('');
+  const [twoError, setTwoError] = useState('');
+
   const [twoImg, setTwoImg] = useState("");
 
   const setPlay = (e, name) => {
     if (name === "one") {
+      setOneLoading(true);
       setPlayerOne(e);
-      setOneImg(`https://github.com/${e}.png?size=200`);
+      axios.get(`https://api.github.com/users/${e}`)
+      .then(() => {
+        setOneImg(`https://github.com/${e}.png?size=200`);
+      }).catch((error) => {
+        setOneError(error.response.data.message);
+      }).finally(() => {
+        setOneLoading(false);
+      })
+      // setOneImg(`https://github.com/${e}.png?size=200`);
     } else {
+      setTwoLoading(true);
       setPlayerTwo(e);
-      setTwoImg(`https://github.com/${e}.png?size=200`);
+      axios.get(`https://api.github.com/users/${e}`)
+      .then(() => {
+        setTwoImg(`https://github.com/${e}.png?size=200`);
+      }).catch((error) => {
+        setTwoError(error.response.data.message);
+      }).finally(() => {
+        setTwoLoading(false);
+      })
     }
   };
 
@@ -29,9 +53,11 @@ export default () => {
     if (name === "one") {
       setPlayerOne("");
       setOneImg("");
+      setOneError('');
     } else {
       setPlayerTwo("");
       setTwoImg("");
+      setTwoError('');
     }
   };
   return (
@@ -63,120 +89,12 @@ export default () => {
       <div className={`${style["battle-form-content-wrap"]}`}>
         <div>
           <h3> Player One </h3>
-          {!oneImg ? (
-            <Formik
-              initialValues={{ playerOne: "" }}
-              validate={(values) => {
-                const errors = {};
-                if (!values.playerOne) {
-                  errors.playerOne = "请输入";
-                }
-                return errors;
-              }}
-              onSubmit={(values, actions) => {
-                actions.setSubmitting(false);
-                setPlay(values.playerOne, "one");
-              }}
-            >
-              {(formProps) => (
-                <form
-                  onSubmit={formProps.handleSubmit}
-                  className={`${style["battle-form-content"]}`}
-                >
-                  <input
-                    type="text"
-                    onChange={formProps.handleChange}
-                    value={formProps.values.playerOne}
-                    name="playerOne"
-                    placeholder="github username"
-                  />
-                  {formProps.errors.playerOne && (
-                    <div id={style.feedback}>{formProps.errors.playerOne}</div>
-                  )}
-                  <button type="submit">Submit</button>
-                </form>
-              )}
-            </Formik>
-          ) : (
-            <div className={`${style["battle-selectInfo"]}`}>
-              <div className={`${style["battle-basicInfo"]}`}>
-                <img src={oneImg} alt="" />
-                <span>{playerOne}</span>
-              </div>
-              <div
-                onClick={() => clearPlayer("one")}
-                role="button"
-                tabIndex={-1}
-                onKeyUp={() => {}}
-              >
-                <i
-                  className="fa fa-times-circle"
-                  style={{
-                    color: "red",
-                  }}
-                />
-              </div>
-            </div>
-          )}
+          <Formiks style={style} num='one' loading={oneLoading} error={oneError} name='playerTwo' isHave={oneImg || oneError} setPlay={(v,i) => {setPlay(v,i)}} clearPlayer={clearPlayer} img={oneImg} player={playerOne} />
         </div>
         <div>
           <h3> Player Two </h3>
-          {!twoImg ? (
-            <Formik
-              initialValues={{ playerTwo: "" }}
-              validate={(values) => {
-                const errors = {};
-                if (!values.playerTwo) {
-                  errors.playerTwo = "请输入";
-                }
-                return errors;
-              }}
-              onSubmit={(values, actions) => {
-                actions.setSubmitting(false);
-                setPlay(values.playerTwo, "two");
-              }}
-            >
-              {(formProps) => (
-                <form
-                  onSubmit={formProps.handleSubmit}
-                  className={`${style["battle-form-content"]}`}
-                >
-                  <input
-                    type="text"
-                    onChange={formProps.handleChange}
-                    value={formProps.values.playerTwo}
-                    name="playerTwo"
-                    placeholder="github username"
-                  />
-                  {formProps.errors.playerTwo && (
-                    <div id={style.feedback}>{formProps.errors.playerTwo}</div>
-                  )}
-                  <button type="submit">Submit</button>
-                </form>
-              )}
-            </Formik>
-          ) : (
-            <div className={`${style["battle-selectInfo"]}`}>
-              <div className={`${style["battle-basicInfo"]}`}>
-                <img src={twoImg} alt="" />
-                <span>{playerTwo}</span>
-              </div>
-              <div
-                onClick={() => clearPlayer("two")}
-                role="button"
-                tabIndex={-2}
-                onKeyUp={() => {}}
-              >
-                <i
-                  className="fa fa-times-circle"
-                  style={{
-                    color: "red",
-                  }}
-                />
-              </div>
-            </div>
-          )}
-        </div>
+          <Formiks style={style} num='two' name='playerTwo' loading={twoLoading} error={twoError} isHave={twoImg || twoError} setPlay={(v,i) => {setPlay(v,i)}} clearPlayer={clearPlayer} img={twoImg}  player={playerTwo} />
+        </div> 
       </div>
       {oneImg && twoImg && (twoImg !== oneImg)  && (
         <div className={`${style["battle-button"]}`}>

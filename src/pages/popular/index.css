@@ -60,6 +60,18 @@
   padding-left: 10%;
   margin: 10px 0;
 }
+
+#backTop{
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  border-radius: 4px;
+  background-color: skyblue;
+  color: #Fff;
+  padding: 3px 20px;
+  border-color: #fff;
+}
+
 /*.loader {
   background: #000;
   background: radial-gradient(#222, #000);

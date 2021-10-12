@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link, Route } from "react-router-dom";
 import style from "./index.css";
 
+const popularArr = ['popular', 'All', 'Javascript', 'Ruby', 'Java', 'CSS'];
+
 export default () => {
   const [tag, setTag] = useState("popular");
 
@@ -11,13 +13,48 @@ export default () => {
       if (hash === "battle" || hash.indexOf("battle/result") > -1) {
         setTag("battle");
       } else {
-        setTag(null);
+        console.log(hash);
+        if (hash.indexOf("popular") > -1) {
+          const keys = hash.slice(8);
+          if (hash === 'popular') {
+            setTag("popular");
+            return;
+          }
+          switch (keys) {
+            case 'All':
+              setTag("All");
+              break;
+            case 'Javascript':
+              setTag("Javascript");
+              break;
+            case 'Ruby':
+              setTag("Ruby");
+              break;
+            case 'Java':
+              setTag("Java");
+              break;
+            case 'CSS':
+              setTag("CSS");
+              break;
+            default:
+              setTag(null);
+              break;
+          }
+        }
       }
     } else if (isElse) {
       setTag("popular");
     }
-  };
+    // switch (hash) {
+    //   case 'battle':
+    //     setTag("battle");
+    //     break;
 
+    //   default:
+    //     break;
+    // }
+
+  };
   useEffect(() => {
     window.addEventListener("hashchange", () => {
       // const hash = window.location.hash.slice(2);
@@ -44,7 +81,6 @@ export default () => {
     // }
     getTag(false);
   });
-
   return (
     <div>
       <div className={style["item-top"]}>
@@ -52,7 +88,7 @@ export default () => {
           <Link
             href="/"
             to="/"
-            className={`${tag === "popular" ? `${style.checkedTag}` : ""}`}
+            className={`${popularArr.includes(tag) ? `${style.checkedTag}` : ""}`}
             onClick={() => {
               setTag("popular");
             }}
