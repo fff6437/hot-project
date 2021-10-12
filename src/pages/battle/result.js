@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Loading from "src/compontent/loading";
+import Loading from "_src/compontent/loading";
 import style from "./battle.css";
 // import load from '../index.css';
 
@@ -28,9 +28,9 @@ export default () => {
     }
     return params;
   };
-  
+
   const getInfo = async () => {
-    const params = parseUri(window.location.hash)
+    const params = parseUri(window.location.hash);
     if (!params.playerOne || !params.playerTwo) {
       window.location.href = "#/battle";
       return;
@@ -47,19 +47,19 @@ export default () => {
         setTwoInfos(res.data);
         setTwoloading(true);
       });
-  }
+  };
 
   useEffect(() => {
-      getInfo();
+    getInfo();
   }, []);
 
   useEffect(() => {
-    window.addEventListener("hashchange",getInfo);
-    return window.removeEventListener('hashchange',getInfo);
-  },[]);
+    window.addEventListener("hashchange", getInfo);
+    return window.removeEventListener("hashchange", getInfo);
+  }, []);
 
   useEffect(async () => {
-    const params = parseUri(window.location.hash)
+    const params = parseUri(window.location.hash);
     if (!params.playerOne || !params.playerTwo) {
       window.location.href = "#/battle";
       return;
@@ -86,9 +86,9 @@ export default () => {
       <div className={`${style["result-center"]}`}>
         <div>
           <div className={`${style["result-info"]}`}>
-            {oneInfos.public_repos > twoInfos.public_repos ? 'Winner' : null}
-            {oneInfos.public_repos === twoInfos.public_repos ? 'Draw' : null}
-            {oneInfos.public_repos < twoInfos.public_repos ? 'Loser' : null}
+            {oneInfos.public_repos > twoInfos.public_repos ? "Winner" : null}
+            {oneInfos.public_repos === twoInfos.public_repos ? "Draw" : null}
+            {oneInfos.public_repos < twoInfos.public_repos ? "Loser" : null}
           </div>
           <div>
             <img src={oneInfos.avatar_url} alt="" />
@@ -118,9 +118,9 @@ export default () => {
         </div>
         <div>
           <div className={`${style["result-info"]}`}>
-            {twoInfos.public_repos > oneInfos.public_repos ? 'Winner' : null}
-            {twoInfos.public_repos === oneInfos.public_repos ? 'Draw' : null}
-            {twoInfos.public_repos < oneInfos.public_repos ? 'Loser' : null}
+            {twoInfos.public_repos > oneInfos.public_repos ? "Winner" : null}
+            {twoInfos.public_repos === oneInfos.public_repos ? "Draw" : null}
+            {twoInfos.public_repos < oneInfos.public_repos ? "Loser" : null}
           </div>
           <div>
             <img src={twoInfos.avatar_url} alt="" />

@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Loading from "src/compontent/loading";
+import Loading from "_src/compontent/loading";
 import InfiniteScroll from "react-infinite-scroller";
-import style from './index.css';
+import style from "./index.css";
 // import load from '../index.css';
-
 
 export default (props) => {
   const [page, setPage] = useState(0);
@@ -47,17 +46,17 @@ export default (props) => {
   };
 
   const backTop = () => {
-    document.documentElement.scrollTop = 0
-  }
+    document.documentElement.scrollTop = 0;
+  };
   window.onscroll = () => {
-      const scrollTop =
-        document.documentElement.scrollTop || document.body.scrollTop;
-        if (scrollTop === 0) {
-          setShowBtn(false);
-        } else if (scrollTop > 200){
-          setShowBtn(true);
-        }
-  }
+    const scrollTop =
+      document.documentElement.scrollTop || document.body.scrollTop;
+    if (scrollTop === 0) {
+      setShowBtn(false);
+    } else if (scrollTop > 200) {
+      setShowBtn(true);
+    }
+  };
 
   // window.onscroll = () => {
   //   // 变量scrollTop是滚动条滚动时，距离顶部的距离
@@ -107,7 +106,7 @@ export default (props) => {
     setDataLoding(false);
     setLoading(false);
     setError(false);
-    if(props.urlKey) {
+    if (props.urlKey) {
       getStarList(props.urlKey, 0, false);
     }
   }, [props.urlKey]);
@@ -146,34 +145,30 @@ export default (props) => {
           {" "}
           {data &&
             data.map((v, i) => (
-              <div key={i} className={`${style['list-content']}`}>
-                <div className={`${style.ranking} ${style.center}`}>#{i + 1}</div>
+              <div key={i} className={`${style["list-content"]}`}>
+                <div className={`${style.ranking} ${style.center}`}>
+                  #{i + 1}
+                </div>
                 <div className={`${style.img} ${style.center}`}>
                   <img src={v.owner.avatar_url} alt="" />
                 </div>
-                <div className={`${style['list-name']} ${style.center}`}>{v.name}</div>
-                <div className={style['list-info']}>
-                  <i
-                    className={`fa fa-user ${style.green}`}
-                  />
+                <div className={`${style["list-name"]} ${style.center}`}>
+                  {v.name}
+                </div>
+                <div className={style["list-info"]}>
+                  <i className={`fa fa-user ${style.green}`} />
                   {v.owner.login}
                 </div>
-                <div className={style['list-info']}>
-                  <i
-                    className={`fa fa-star ${style.yellow}`}
-                  />
+                <div className={style["list-info"]}>
+                  <i className={`fa fa-star ${style.yellow}`} />
                   {v.stargazers_count} stars
                 </div>
-                <div className={style['list-info']}>
-                  <i
-                    className={`fa fa-code-fork ${style.blue}`}
-                  />
+                <div className={style["list-info"]}>
+                  <i className={`fa fa-code-fork ${style.blue}`} />
                   {v.forks} forks
                 </div>
-                <div className={style['list-info']}>
-                  <i
-                    className={`fa fa-exclamation-triangle ${style.pink}`}
-                  />
+                <div className={style["list-info"]}>
+                  <i className={`fa fa-exclamation-triangle ${style.pink}`} />
                   {v.open_issues} open issues
                 </div>
               </div>
@@ -196,8 +191,14 @@ export default (props) => {
           </div>
         )
       )}
-      {showBtn && !isError && <button id={`${style.backTop}`} onClick={backTop} type='button'>回到顶部</button>}
-      {!loading && getDataLoding && <div style={{textAlign: 'center',color:'skyblue'}}>LOADING...</div>}
+      {showBtn && !isError && (
+        <button id={`${style.backTop}`} onClick={backTop} type="button">
+          回到顶部
+        </button>
+      )}
+      {!loading && getDataLoding && (
+        <div style={{ textAlign: "center", color: "skyblue" }}>LOADING...</div>
+      )}
     </div>
   );
 };

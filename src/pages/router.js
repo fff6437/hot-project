@@ -1,6 +1,6 @@
-import Popular from "src/pages/popular";
-import SelectPlayer from "src/pages/battle/selectPlayer";
-import Result from "src/pages/battle/result";
+import Popular from "_src/pages/popular";
+import SelectPlayer from "_src/pages/battle/selectPlayer";
+import Result from "_src/pages/battle/result";
 
 export const routes = [
   {

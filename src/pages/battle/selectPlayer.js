@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 // import { Formik } from "formik";
-import Formiks from 'src/compontent/formiks';
+import Formiks from "_src/compontent/formiks";
 import axios from "axios";
 // import { useFormik } from 'formik';
 import style from "./battle.css";
@@ -12,8 +12,8 @@ export default () => {
   const [oneImg, setOneImg] = useState("");
   const [oneLoading, setOneLoading] = useState(false);
   const [twoLoading, setTwoLoading] = useState(false);
-  const [oneError, setOneError] = useState('');
-  const [twoError, setTwoError] = useState('');
+  const [oneError, setOneError] = useState("");
+  const [twoError, setTwoError] = useState("");
 
   const [twoImg, setTwoImg] = useState("");
 
@@ -21,26 +21,32 @@ export default () => {
     if (name === "one") {
       setOneLoading(true);
       setPlayerOne(e);
-      axios.get(`https://api.github.com/users/${e}`)
-      .then(() => {
-        setOneImg(`https://github.com/${e}.png?size=200`);
-      }).catch((error) => {
-        setOneError(error.response.data.message);
-      }).finally(() => {
-        setOneLoading(false);
-      })
+      axios
+        .get(`https://api.github.com/users/${e}`)
+        .then(() => {
+          setOneImg(`https://github.com/${e}.png?size=200`);
+        })
+        .catch((error) => {
+          setOneError(error.response.data.message);
+        })
+        .finally(() => {
+          setOneLoading(false);
+        });
       // setOneImg(`https://github.com/${e}.png?size=200`);
     } else {
       setTwoLoading(true);
       setPlayerTwo(e);
-      axios.get(`https://api.github.com/users/${e}`)
-      .then(() => {
-        setTwoImg(`https://github.com/${e}.png?size=200`);
-      }).catch((error) => {
-        setTwoError(error.response.data.message);
-      }).finally(() => {
-        setTwoLoading(false);
-      })
+      axios
+        .get(`https://api.github.com/users/${e}`)
+        .then(() => {
+          setTwoImg(`https://github.com/${e}.png?size=200`);
+        })
+        .catch((error) => {
+          setTwoError(error.response.data.message);
+        })
+        .finally(() => {
+          setTwoLoading(false);
+        });
     }
   };
 
@@ -53,11 +59,11 @@ export default () => {
     if (name === "one") {
       setPlayerOne("");
       setOneImg("");
-      setOneError('');
+      setOneError("");
     } else {
       setPlayerTwo("");
       setTwoImg("");
-      setTwoError('');
+      setTwoError("");
     }
   };
   return (
@@ -89,14 +95,40 @@ export default () => {
       <div className={`${style["battle-form-content-wrap"]}`}>
         <div>
           <h3> Player One </h3>
-          <Formiks style={style} num='one' loading={oneLoading} error={oneError} name='playerTwo' isHave={oneImg || oneError} setPlay={(v,i) => {setPlay(v,i)}} clearPlayer={clearPlayer} img={oneImg} player={playerOne} />
+          <Formiks
+            style={style}
+            num="one"
+            loading={oneLoading}
+            error={oneError}
+            name="playerTwo"
+            isHave={oneImg || oneError}
+            setPlay={(v, i) => {
+              setPlay(v, i);
+            }}
+            clearPlayer={clearPlayer}
+            img={oneImg}
+            player={playerOne}
+          />
         </div>
         <div>
           <h3> Player Two </h3>
-          <Formiks style={style} num='two' name='playerTwo' loading={twoLoading} error={twoError} isHave={twoImg || twoError} setPlay={(v,i) => {setPlay(v,i)}} clearPlayer={clearPlayer} img={twoImg}  player={playerTwo} />
-        </div> 
+          <Formiks
+            style={style}
+            num="two"
+            name="playerTwo"
+            loading={twoLoading}
+            error={twoError}
+            isHave={twoImg || twoError}
+            setPlay={(v, i) => {
+              setPlay(v, i);
+            }}
+            clearPlayer={clearPlayer}
+            img={twoImg}
+            player={playerTwo}
+          />
+        </div>
       </div>
-      {oneImg && twoImg && (twoImg !== oneImg)  && (
+      {oneImg && twoImg && twoImg !== oneImg && (
         <div className={`${style["battle-button"]}`}>
           <button
             type="button"

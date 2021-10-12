@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, Route } from "react-router-dom";
 import style from "./index.css";
 
-const popularArr = ['popular', 'All', 'Javascript', 'Ruby', 'Java', 'CSS'];
+const popularArr = ["popular", "All", "Javascript", "Ruby", "Java", "CSS"];
 
 export default () => {
   const [tag, setTag] = useState("popular");
@@ -16,30 +16,33 @@ export default () => {
         console.log(hash);
         if (hash.indexOf("popular") > -1) {
           const keys = hash.slice(8);
-          if (hash === 'popular') {
+          console.log(keys);
+          if (hash === "popular") {
             setTag("popular");
             return;
           }
           switch (keys) {
-            case 'All':
+            case "All":
               setTag("All");
               break;
-            case 'Javascript':
+            case "Javascript":
               setTag("Javascript");
               break;
-            case 'Ruby':
+            case "Ruby":
               setTag("Ruby");
               break;
-            case 'Java':
+            case "Java":
               setTag("Java");
               break;
-            case 'CSS':
+            case "CSS":
               setTag("CSS");
               break;
             default:
               setTag(null);
               break;
           }
+        } else {
+          setTag(null);
         }
       }
     } else if (isElse) {
@@ -53,7 +56,6 @@ export default () => {
     //   default:
     //     break;
     // }
-
   };
   useEffect(() => {
     window.addEventListener("hashchange", () => {
@@ -83,30 +85,34 @@ export default () => {
   });
   return (
     <div>
-      <div className={style["item-top"]}>
-        <Route>
-          <Link
-            href="/"
-            to="/"
-            className={`${popularArr.includes(tag) ? `${style.checkedTag}` : ""}`}
-            onClick={() => {
-              setTag("popular");
-            }}
-          >
-            popular
-          </Link>
-          <Link
-            href="#/battle"
-            to="/battle"
-            className={`${tag === "battle" ? `${style.checkedTag}` : ""}`}
-            onClick={() => {
-              setTag("battle");
-            }}
-          >
-            battle
-          </Link>
-        </Route>
-      </div>
+      {tag && (
+        <div className={style["item-top"]}>
+          <Route>
+            <Link
+              href="/"
+              to="/"
+              className={`${
+                popularArr.includes(tag) ? `${style.checkedTag}` : ""
+              }`}
+              onClick={() => {
+                setTag("popular");
+              }}
+            >
+              popular
+            </Link>
+            <Link
+              href="#/battle"
+              to="/battle"
+              className={`${tag === "battle" ? `${style.checkedTag}` : ""}`}
+              onClick={() => {
+                setTag("battle");
+              }}
+            >
+              battle
+            </Link>
+          </Route>
+        </div>
+      )}
       {!tag ? <div className={style["not-found"]}>404 Not Found</div> : null}
     </div>
   );

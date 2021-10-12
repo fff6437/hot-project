@@ -96,7 +96,7 @@ module.exports = function (env, argv) {
     // },
     resolve: {
       alias: {
-        'src': path.resolve('src'),
+        '_src': path.resolve('src'),
         node_modules: `${__dirname}/node_modules`,
       },
     },
