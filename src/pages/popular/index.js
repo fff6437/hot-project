@@ -50,27 +50,6 @@ export default () => {
       setUrlNmae("All");
     }
   });
-  // const hash = window.location.hash.slice(2);
-  // switch (hash) {
-  //   case 'All':
-  //       setKey("All");
-  //       break;
-  //   case 'Javascript':
-  //       setKey("Javascript");
-  //       break;
-  //   case 'Ruby':
-  //       setKey("Ruby");
-  //       break;
-  //   case 'Java':
-  //       setKey("Java");
-  //       break;
-  //   case 'CSS':
-  //       setKey("CSS");
-  //       break;
-  //   default:
-  //     setKey(null);
-  //     break;
-  // }
 
   return !error ? (
     <div>

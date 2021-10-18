@@ -1,6 +1,9 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = function (env, argv) {
   const isEnvDevelopment = argv.mode === 'development' || !argv.mode;
@@ -92,10 +95,32 @@ module.exports = function (env, argv) {
       },
     },
     plugins: [
+    //   new HtmlWebpackPlugin({
+    //     template: 'public/index.html',
+    //   }),
+      new webpack.HotModuleReplacementPlugin(),
       new HtmlWebpackPlugin({
         template: 'public/index.html',
+        minify: {
+            removeComments: true,
+            collapseWhitespace: true,
+            removeRedundantAttributes: true,
+            useShortDoctype: true,
+            removeEmptyAttributes: true,
+            removeStyleLinkTypeAttributes: true,
+            keepClosingSlash: true,
+            minifyJS: true,
+            minifyCSS: true,
+            minifyURLs: true,
+        },
       }),
-      new webpack.HotModuleReplacementPlugin(),
+      // new webpack.HotModuleReplacementPlugin(),
+      new MiniCssExtractPlugin({
+        filename: '[name].[contenthash:8].css',
+        chunkFilename: '[name].[contenthash:8].chunk.css',
+      }),
+      new BundleAnalyzerPlugin(),
+      new CleanWebpackPlugin(),
     ],
     optimization: {
       moduleIds: 'named'
